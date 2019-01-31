@@ -13,13 +13,16 @@
 # limitations under the License.
 
 import subprocess
+from typing import List, Optional
 
 from synthtool import log
 
 
-def run(args, *, cwd=None, check=True, hide_output=True):
+def run(
+    args: List, *, cwd: str = None, check: bool = True, hide_output: bool = True
+) -> subprocess.CompletedProcess:
     if hide_output:
-        stdout = subprocess.PIPE
+        stdout: Optional[int] = subprocess.PIPE
     else:
         stdout = None
 
