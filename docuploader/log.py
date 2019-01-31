@@ -37,7 +37,9 @@ class LoggerWithSuccess(logging.getLoggerClass()):  # type: ignore
 logging.setLoggerClass(LoggerWithSuccess)
 logger = logging.getLogger("docuploader")
 logger.setLevel(logging.DEBUG)
+logging.getLogger("urllib3.util.retry").setLevel(logging.ERROR)
 logging.getLogger("urllib3.connectionpool").setLevel(logging.ERROR)
+logging.getLogger("google.auth").setLevel(logging.ERROR)
 
 
 def success(*args, **kwargs):

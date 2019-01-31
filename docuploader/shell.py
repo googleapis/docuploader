@@ -15,7 +15,7 @@
 import subprocess
 from typing import List, Optional
 
-from synthtool import log
+from docuploader import log
 
 
 def run(
