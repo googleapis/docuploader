@@ -21,6 +21,7 @@ release_status = 'Development Status :: 3 - Alpha'
 dependencies = [
     "click",
     "colorlog",
+    "google-cloud-storage"
 ]
 
 packages = setuptools.find_packages()

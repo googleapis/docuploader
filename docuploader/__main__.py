@@ -17,8 +17,8 @@ import sys
 import click
 import pkg_resources
 
+import docuploader.credentials
 import docuploader.log
-
 
 try:
     VERSION = pkg_resources.get_distribution("gcp-docuploader").version
@@ -28,9 +28,19 @@ except pkg_resources.DistributionNotFound:
 
 @click.command()
 @click.version_option(message="%(version)s", version=VERSION)
-def main():
+@click.option(
+    "--credentials",
+    default=docuploader.credentials.find(),
+    help="Path to the credentials file to use for Google Cloud Storage.",
+)
+def main(credentials):
+    if not credentials:
+        docuploader.log.error(
+            "You need credentials to run this! Specify --credentials on the command line."
+        )
+        return sys.exit(1)
+
     docuploader.log.success(f"I don't do anything yet. :)")
-    sys.exit(1)
 
 
 if __name__ == "__main__":
