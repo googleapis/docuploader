@@ -1,0 +1,48 @@
+// Copyright 2019 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package yoshi.docs.metadata;
+
+import "google/protobuf/timestamp.proto";
+
+
+message Metadata {
+    // When the documentation was built.
+    google.protobuf.Timestamp update_time = 1;
+
+    // The product/API name. This *should* match the DNS name of the API
+    // service. For example, Python's Cloud Storage client would list "storage"
+    // because it talks to storage.googleapis.com. For non-API libraries, such
+    // as auth, consult googleapis-dot-dev-team@ for guidance.
+    string name = 2;
+
+    // The package version, for example 1.2.3, or 0.1.2-beta1.
+    string version = 3;
+
+    // The (programming) language. While this isn't enforced with an enum, you
+    // should use one of the following strings:  python, node, ruby, dotnet,
+    // java, go, php, cpp. In some cases you might need to use something else,
+    // consult googleapis-dot-dev-team@ for guidance.
+    string language = 4;
+
+    // The language-idiomatic package/distribution name, for example:
+    // Python: google-cloud-storage
+    // Node.js: @google/cloud-storage
+    string distribution_name = 5;
+
+    // The rest of the fields here are optional, but encouraged.
+    // TODO: Additional fields such as backlinks, issue tracker, source, etc.
+}

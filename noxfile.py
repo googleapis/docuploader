@@ -35,3 +35,14 @@ def test(session):
     session.install('pytest', 'pytest-cov')
     session.run('pip', 'install', '-e', '.')
     session.run('pytest', '--cov-report', 'term-missing', '--cov', 'docuploader', 'tests', *session.posargs)
+
+
+@nox.session(python='3.6')
+def generate_protos(session):
+    session.install("grpcio-tools", "mypy-protobuf")
+    session.run(
+        "python", "-m", "grpc_tools.protoc",
+        "-Idocuploader/protos",
+        "--python_out=docuploader/protos",
+        "--mypy_out=docuploader/protos",
+        "docuploader/protos/metadata.proto")
