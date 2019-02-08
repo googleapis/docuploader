@@ -12,12 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import datetime
+import pathlib
+import shutil
 import sys
 import tempfile
+from typing import Optional
 
 import click
+from google.protobuf import text_format  # type: ignore
 import pkg_resources
 
+from docuploader.protos import metadata_pb2
 import docuploader.credentials
 import docuploader.log
 import docuploader.tar
@@ -28,22 +34,66 @@ try:
 except pkg_resources.DistributionNotFound:
     VERSION = "0.0.0+dev"
 
+DEFAULT_STAGING_BUCKET = "docs-resources"
 
-@click.command()
+
+@click.group()
 @click.version_option(message="%(version)s", version=VERSION)
+def main():
+    pass
+
+
+@main.command()
+@click.option(
+    "--staging-bucket",
+    default=DEFAULT_STAGING_BUCKET,
+    help="The bucket to upload the staged documentation to.",
+)
 @click.option(
     "--credentials",
     default=docuploader.credentials.find(),
     help="Path to the credentials file to use for Google Cloud Storage.",
 )
+@click.option("--metadata-file", default=None, help="Path to the docs.metadata file.")
 @click.argument("documentation_path")
-# TODO: Metadata
-def main(credentials, documentation_path):
+def upload(
+    staging_bucket: str,
+    credentials: str,
+    metadata_file: Optional[str],
+    documentation_path: str,
+):
     if not credentials:
         docuploader.log.error(
             "You need credentials to run this! Specify --credentials on the command line."
         )
         return sys.exit(1)
+
+    if metadata_file is None:
+        metadata_path = pathlib.Path(documentation_path) / "docs.metadata"
+    else:
+        metadata_path = pathlib.Path(metadata_file)
+
+    if not metadata_path.exists():
+        docuploader.log.error(
+            "You need metadata to upload the docs. You can generate it with docuploader create-metadata"
+        )
+        return sys.exit(1)
+
+    docuploader.log.success("Let's upload some docs!")
+
+    docuploader.log.info("Loading up your metadata.")
+    try:
+        shutil.copy(metadata_path, pathlib.Path(documentation_path) / "docs.metadata")
+    except shutil.SameFileError:
+        pass
+
+    metadata = metadata_pb2.Metadata()
+    text_format.Merge(metadata_path.read_text(), metadata)
+    # TODO: Validate that the minimum metadata is set.
+
+    docuploader.log.success(
+        f"Looks like we're uploading {metadata.name} version {metadata.version} for {metadata.language}."
+    )
 
     docuploader.log.info(
         f"Sit tight, I'm tarring up your docs in {documentation_path}."
@@ -59,16 +109,43 @@ def main(credentials, documentation_path):
 
         docuploader.log.info(f"Okay, I'm sending them to the cloud™ now.")
 
+        destination_name = (
+            f"{metadata.language}-{metadata.name}-{metadata.version}.tar.gz"
+        )
+
         docuploader.upload.upload(
             source=tar_filename,
-            # TODO: Destination filename should be based on metadata.
-            destination="test.tar.gz",
-            # TODO: Bucket should be an argument / well-known constant, I guess?
-            bucket="docs-resources",
+            destination=destination_name,
+            bucket=staging_bucket,
             credentials_file=credentials,
         )
 
-    docuploader.log.success(f"All is well, your docs were uploaded! <3")
+    docuploader.log.success(
+        f"All is well, your docs were uploaded to gs://{staging_bucket}/{destination_name}! <3"
+    )
+
+
+@main.command()
+# TODO: Use https://github.com/googleapis/protoc-docs-plugin to add docstrings
+# to the pb2 module so that I can reference them here.
+@click.option("--name", required=True)
+@click.option("--version", required=True)
+@click.option("--language", required=True)
+@click.option("--distribution-name", default="")
+@click.argument("destination", default="docs.metadata")
+def create_metadata(
+    name: str, version: str, language: str, distribution_name: str, destination: str
+):
+    metadata = metadata_pb2.Metadata()
+    metadata.update_time.FromDatetime(datetime.datetime.utcnow())
+    metadata.name = name
+    metadata.language = language
+    metadata.version = version
+    metadata.distribution_name = distribution_name
+
+    destination_path = pathlib.Path(destination)
+    destination_path.write_text(text_format.MessageToString(metadata))
+    docuploader.log.success(f"Wrote metadata to {destination_path}.")
 
 
 if __name__ == "__main__":
