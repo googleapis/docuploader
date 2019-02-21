@@ -29,8 +29,7 @@ import os
 from typing import List
 
 _WELL_KNOWN_LOCATIONS: List[str] = [
-    # TODO: Keystore path.
-    # os.environ["KOKORO_KEYSTORE_DIR"] / "73713_{key_name}"
+    os.path.join(os.environ["KOKORO_KEYSTORE_DIR"], "73713_docuploader_service_account")
 ]
 
 
