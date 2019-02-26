@@ -28,9 +28,14 @@ module deals with (1), while __main__ handles (2).
 import os
 from typing import List
 
-_WELL_KNOWN_LOCATIONS: List[str] = [
-    os.path.join(os.environ["KOKORO_KEYSTORE_DIR"], "73713_docuploader_service_account")
-]
+_WELL_KNOWN_LOCATIONS: List[str] = []
+
+if "KOKORO_KEYSTORE_DIR" in os.environ:
+    _WELL_KNOWN_LOCATIONS.append(
+        os.path.join(
+            os.environ["KOKORO_KEYSTORE_DIR"], "73713_docuploader_service_account"
+        )
+    )
 
 
 def find():
