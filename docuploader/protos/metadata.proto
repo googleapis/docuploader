@@ -44,5 +44,15 @@ message Metadata {
     string distribution_name = 5;
 
     // The rest of the fields here are optional, but encouraged.
-    // TODO: Additional fields such as backlinks, issue tracker, source, etc.
+
+    // The product page. For example https://cloud.google.com/storage/
+    string product_page = 6;
+
+    // The github repository. For example, Node's Cloud Storage client would be https://github.com/googleapis/nodejs-storage
+    string github_repository = 7;
+
+    // The issue tracker. For example the Node Storage client's issue tracker is https://github.com/googleapis/nodejs-storage/issues
+    string issue_tracker = 8;
+
+
 }

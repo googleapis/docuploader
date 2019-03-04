@@ -132,9 +132,19 @@ def upload(
 @click.option("--version", required=True)
 @click.option("--language", required=True)
 @click.option("--distribution-name", default="")
+@click.option("--product-page", default="")
+@click.option("--github-repository", default="")
+@click.option("--issue-tracker", default="")
 @click.argument("destination", default="docs.metadata")
 def create_metadata(
-    name: str, version: str, language: str, distribution_name: str, destination: str
+    name: str,
+    version: str,
+    language: str,
+    distribution_name: str,
+    product_page: str,
+    github_repository: str,
+    issue_tracker: str,
+    destination: str,
 ):
     metadata = metadata_pb2.Metadata()
     metadata.update_time.FromDatetime(datetime.datetime.utcnow())
@@ -142,6 +152,9 @@ def create_metadata(
     metadata.language = language
     metadata.version = version
     metadata.distribution_name = distribution_name
+    metadata.product_page = product_page
+    metadata.github_repository = github_repository
+    metadata.issue_tracker = issue_tracker
 
     destination_path = pathlib.Path(destination)
     destination_path.write_text(text_format.MessageToString(metadata))
