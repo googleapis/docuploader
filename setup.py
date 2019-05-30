@@ -16,7 +16,7 @@ import setuptools
 
 name = 'gcp-docuploader'
 description = ''
-version = '2019.03.05'
+version = '2019.05.30'
 release_status = 'Development Status :: 3 - Alpha'
 dependencies = [
     "click",
