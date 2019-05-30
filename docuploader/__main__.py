@@ -89,7 +89,16 @@ def upload(
 
     metadata = metadata_pb2.Metadata()
     text_format.Merge(metadata_path.read_text(), metadata)
-    # TODO: Validate that the minimum metadata is set.
+
+    # Validating metadata for required fields
+
+    # TODO: Do additional validiation
+    if not metadata.name:
+        raise Exception("Metadata field 'name' is required.")
+    if not metadata.version:
+        raise Exception("Metadata field 'version' is required.")
+    if not metadata.language:
+        raise Exception("Metadata field 'language' is required.")
 
     docuploader.log.success(
         f"Looks like we're uploading {metadata.name} version {metadata.version} for {metadata.language}."
@@ -102,13 +111,9 @@ def upload(
     with tempfile.NamedTemporaryFile() as fh:
         fh.close()
         tar_filename = fh.name
-
         docuploader.tar.compress(documentation_path, tar_filename)
-
         docuploader.log.success(f"Cool, I have those tarred up.")
-
         docuploader.log.info(f"Okay, I'm sending them to the cloud™ now.")
-
         destination_name = (
             f"{metadata.language}-{metadata.name}-{metadata.version}.tar.gz"
         )

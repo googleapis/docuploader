@@ -33,7 +33,7 @@ message Metadata {
     string version = 3;
 
     // The (programming) language. While this isn't enforced with an enum, you
-    // should use one of the following strings:  python, node, ruby, dotnet,
+    // should use one of the following strings:  python, nodejs, ruby, dotnet,
     // java, go, php, cpp. In some cases you might need to use something else,
     // consult googleapis-dot-dev-team@ for guidance.
     string language = 4;
