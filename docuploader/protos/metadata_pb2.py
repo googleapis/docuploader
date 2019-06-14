@@ -23,7 +23,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     syntax="proto3",
     serialized_options=None,
     serialized_pb=_b(
-        '\n\x0emetadata.proto\x12\x13yoshi.docs.metadata\x1a\x1fgoogle/protobuf/timestamp.proto"\xcf\x01\n\x08Metadata\x12/\n\x0bupdate_time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\t\x12\x10\n\x08language\x18\x04 \x01(\t\x12\x19\n\x11\x64istribution_name\x18\x05 \x01(\t\x12\x14\n\x0cproduct_page\x18\x06 \x01(\t\x12\x19\n\x11github_repository\x18\x07 \x01(\t\x12\x15\n\rissue_tracker\x18\x08 \x01(\tb\x06proto3'
+        '\n\x0emetadata.proto\x12\x13yoshi.docs.metadata\x1a\x1fgoogle/protobuf/timestamp.proto"\xf3\x01\n\x08Metadata\x12/\n\x0bupdate_time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x0f\n\x07version\x18\x03 \x01(\t\x12\x10\n\x08language\x18\x04 \x01(\t\x12\x19\n\x11\x64istribution_name\x18\x05 \x01(\t\x12\x14\n\x0cproduct_page\x18\x06 \x01(\t\x12\x19\n\x11github_repository\x18\x07 \x01(\t\x12\x15\n\rissue_tracker\x18\x08 \x01(\t\x12\x0c\n\x04stem\x18\t \x01(\t\x12\x14\n\x0cserving_path\x18\n \x01(\tb\x06proto3'
     ),
     dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR],
 )
@@ -180,6 +180,42 @@ _METADATA = _descriptor.Descriptor(
             serialized_options=None,
             file=DESCRIPTOR,
         ),
+        _descriptor.FieldDescriptor(
+            name="stem",
+            full_name="yoshi.docs.metadata.Metadata.stem",
+            index=8,
+            number=9,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=_b("").decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
+        _descriptor.FieldDescriptor(
+            name="serving_path",
+            full_name="yoshi.docs.metadata.Metadata.serving_path",
+            index=9,
+            number=10,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=_b("").decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+        ),
     ],
     extensions=[],
     nested_types=[],
@@ -190,7 +226,7 @@ _METADATA = _descriptor.Descriptor(
     extension_ranges=[],
     oneofs=[],
     serialized_start=73,
-    serialized_end=280,
+    serialized_end=316,
 )
 
 _METADATA.fields_by_name[
