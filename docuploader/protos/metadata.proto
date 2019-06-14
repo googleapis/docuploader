@@ -54,5 +54,15 @@ message Metadata {
     // The issue tracker. For example the Node Storage client's issue tracker is https://github.com/googleapis/nodejs-storage/issues
     string issue_tracker = 8;
 
+    // The fields below are advanced and should only be set with consultation
+    // from googleapis-dot-dev-team@.
+
+    // The published stem for this docset. If unspecified, it will be set to
+    // `{language}/{name}`.
+    string stem = 9;
+
+    // The serving path for this docset. If unspecified, it will be set to
+    // `{stem}/{version}`.
+    string serving_path = 10;
 
 }
