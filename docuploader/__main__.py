@@ -140,6 +140,8 @@ def upload(
 @click.option("--product-page", default="")
 @click.option("--github-repository", default="")
 @click.option("--issue-tracker", default="")
+@click.option("--stem", default="")
+@click.option("--serving-path", default="")
 @click.argument("destination", default="docs.metadata")
 def create_metadata(
     name: str,
@@ -150,6 +152,8 @@ def create_metadata(
     github_repository: str,
     issue_tracker: str,
     destination: str,
+    stem: str,
+    serving_path: str,
 ):
     metadata = metadata_pb2.Metadata()
     metadata.update_time.FromDatetime(datetime.datetime.utcnow())
@@ -160,6 +164,8 @@ def create_metadata(
     metadata.product_page = product_page
     metadata.github_repository = github_repository
     metadata.issue_tracker = issue_tracker
+    metadata.stem = stem
+    metadata.serving_path = serving_path
 
     destination_path = pathlib.Path(destination)
     destination_path.write_text(text_format.MessageToString(metadata))
