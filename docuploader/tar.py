@@ -30,6 +30,10 @@ def compress(directory: str, destination: str) -> subprocess.CompletedProcess:
             "--create",
             f"--directory={directory}",
             f"--file={destination}",
+            # Treat a colon in the filename as part of the filename,
+            # not an indication of a remote file. This is required in order to
+            # handle canonical filenames on Windows.
+            "--force-local",
             "--gzip",
             "--verbose",
             ".",
