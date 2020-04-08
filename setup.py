@@ -21,8 +21,8 @@ release_status = 'Development Status :: 3 - Alpha'
 dependencies = [
     "click",
     "colorlog",
-    "google-cloud-storage",
-    "protobuf"
+    "google-cloud-storage<2.0.0dev",
+    "protobuf>=3.6.0"
 ]
 
 packages = setuptools.find_packages()
