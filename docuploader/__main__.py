@@ -58,7 +58,7 @@ def main():
 @click.option(
     "--destination-prefix",
     default=None,
-    help="Prefix to include when uploading tar file. A - will be added after the prefix, if there is one."
+    help="Prefix to include when uploading tar file. A - will be added after the prefix, if there is one.",
 )
 @click.argument("documentation_path")
 def upload(
