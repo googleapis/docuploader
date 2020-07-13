@@ -55,11 +55,17 @@ def main():
     help="Path to the credentials file to use for Google Cloud Storage.",
 )
 @click.option("--metadata-file", default=None, help="Path to the docs.metadata file.")
+@click.option(
+    "--destination-prefix",
+    default=None,
+    help="Prefix to include when uploading tar file. A - will be added after the prefix, if there is one.",
+)
 @click.argument("documentation_path")
 def upload(
     staging_bucket: str,
     credentials: str,
     metadata_file: Optional[str],
+    destination_prefix: str,
     documentation_path: str,
 ):
     if not credentials:
@@ -112,11 +118,13 @@ def upload(
         fh.close()
         tar_filename = fh.name
         docuploader.tar.compress(documentation_path, tar_filename)
-        docuploader.log.success(f"Cool, I have those tarred up.")
-        docuploader.log.info(f"Okay, I'm sending them to the cloud™ now.")
+        docuploader.log.success("Cool, I have those tarred up.")
+        docuploader.log.info("Okay, I'm sending them to the cloud™ now.")
         destination_name = (
             f"{metadata.language}-{metadata.name}-{metadata.version}.tar.gz"
         )
+        if destination_prefix:
+            destination_name = f"{destination_prefix}-{destination_name}"
 
         docuploader.upload.upload(
             source=tar_filename,
