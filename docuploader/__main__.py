@@ -101,7 +101,7 @@ def upload(
         raise Exception("Metadata field 'language' is required.")
 
     docuploader.log.success(
-        f"Looks like we're uploading {metadata.name} version {metadata.version} for {metadata.language} with {metadata.format} format."
+        f"Looks like we're uploading {metadata.name} version {metadata.version} for {metadata.language}."
     )
 
     docuploader.log.info(
@@ -117,8 +117,7 @@ def upload(
         destination_name = (
             f"{metadata.language}-{metadata.name}-{metadata.version}.tar.gz"
         )
-        if metadata.format == metadata_pb2._METADATA_FORMAT.values_by_name['DOCFX_YAML'].number:
-            destination_name = f"docfx-{destination_name}"
+
         docuploader.upload.upload(
             source=tar_filename,
             destination=destination_name,
@@ -143,7 +142,6 @@ def upload(
 @click.option("--issue-tracker", default="")
 @click.option("--stem", default="")
 @click.option("--serving-path", default="")
-@click.option("--format", default="HTML")
 @click.argument("destination", default="docs.metadata")
 def create_metadata(
     name: str,
@@ -155,7 +153,6 @@ def create_metadata(
     issue_tracker: str,
     destination: str,
     stem: str,
-    format: str,
     serving_path: str,
 ):
     metadata = metadata_pb2.Metadata()
@@ -169,7 +166,6 @@ def create_metadata(
     metadata.issue_tracker = issue_tracker
     metadata.stem = stem
     metadata.serving_path = serving_path
-    metadata.format = metadata_pb2._METADATA_FORMAT.values_by_name[format].number
 
     destination_path = pathlib.Path(destination)
     destination_path.write_text(text_format.MessageToString(metadata))
