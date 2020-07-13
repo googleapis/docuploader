@@ -118,8 +118,8 @@ def upload(
         fh.close()
         tar_filename = fh.name
         docuploader.tar.compress(documentation_path, tar_filename)
-        docuploader.log.success(f"Cool, I have those tarred up.")
-        docuploader.log.info(f"Okay, I'm sending them to the cloud™ now.")
+        docuploader.log.success("Cool, I have those tarred up.")
+        docuploader.log.info("Okay, I'm sending them to the cloud™ now.")
         destination_name = (
             f"{metadata.language}-{metadata.name}-{metadata.version}.tar.gz"
         )
