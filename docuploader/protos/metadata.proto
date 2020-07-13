@@ -65,4 +65,10 @@ message Metadata {
     // `{stem}/{version}`.
     string serving_path = 10;
 
+    // The format of the docs. If unspecified, it will be assumed to be HTML.
+    enum Format {
+        HTML = 0;
+        DOCFX_YAML = 1;
+    }
+    Format format = 11;
 }
