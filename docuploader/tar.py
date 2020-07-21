@@ -40,3 +40,20 @@ def compress(directory: str, destination: str) -> subprocess.CompletedProcess:
         ],
         hide_output=False,
     )
+
+def decompress(archive: str, destination: str) -> subprocess.CompletedProcess:
+    """Decompress the given tarfile to the destination."""
+    # Note: we don't use the stdlib's "tarfile" module for performance reasons.
+    # While it can handle creating tarfiles, its not as efficient on large
+    # numbers of files like the tar command.
+    return shell.run(
+        [
+            "tar",
+            "--extract",
+            f"--directory={destination}",
+            f"--file={archive}",
+            "--gzip",
+            "--verbose",
+        ],
+        hide_output=True,
+    )
