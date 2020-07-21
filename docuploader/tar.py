@@ -41,6 +41,7 @@ def compress(directory: str, destination: str) -> subprocess.CompletedProcess:
         hide_output=False,
     )
 
+
 def decompress(archive: str, destination: str) -> subprocess.CompletedProcess:
     """Decompress the given tarfile to the destination."""
     # Note: we don't use the stdlib's "tarfile" module for performance reasons.
