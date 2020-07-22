@@ -28,6 +28,7 @@ def make_tree(root, tree):
         else:
             (root / key).write_text(value)
 
+
 def read_tree(root):
     root = pathlib.Path(root)
     result = {}
@@ -38,6 +39,7 @@ def read_tree(root):
             with p.open() as f:
                 result[p.name] = f.readline()
     return result
+
 
 def test_tar(tmpdir):
     root = tmpdir / "tar_test_dir"
