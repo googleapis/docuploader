@@ -13,8 +13,10 @@
 # limitations under the License.
 
 import datetime
+import glob
 import pathlib
 import shutil
+import re
 import sys
 import tempfile
 from typing import Optional
@@ -105,6 +107,28 @@ def upload(
         raise Exception("Metadata field 'version' is required.")
     if not metadata.language:
         raise Exception("Metadata field 'language' is required.")
+
+    is_devsite = False
+    if destination_prefix == "docfx":
+        is_devsite = True
+    else:
+        # Check a random HTML file for "devsite".
+        html_files = glob.glob(f"{pathlib.Path(documentation_path)}/*.html")
+        if len(html_files) > 0:
+            with open(html_files[0]) as f:
+                is_devsite = "devsite" in f.read()
+    devsite_serving_re = (
+        f"/{metadata.language}/docs/reference/[^/]+/[^/]+/[^/]+"
+    )
+    if is_devsite and not re.match(devsite_serving_re, metadata.serving_path):
+        docuploader.log.warning(
+            (
+                "It looks like you're uploading Devsite content. But, the serving "
+                f"path ({metadata.serving_path}) does not match {devsite_serving_re}! "
+                "Double check the --serving-path argument to docuploader create-metadata. "
+                "--serving-path should be /$LANG/docs/reference/$API_SHORTNAME/$PKG/latest."
+            )
+        )
 
     docuploader.log.success(
         f"Looks like we're uploading {metadata.name} version {metadata.version} for {metadata.language}."
