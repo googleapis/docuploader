@@ -117,9 +117,7 @@ def upload(
         if len(html_files) > 0:
             with open(html_files[0]) as f:
                 is_devsite = "devsite" in f.read()
-    devsite_serving_re = (
-        f"/{metadata.language}/docs/reference/[^/]+/[^/]+/[^/]+"
-    )
+    devsite_serving_re = f"/{metadata.language}/docs/reference/[^/]+/[^/]+/[^/]+"
     if is_devsite and not re.match(devsite_serving_re, metadata.serving_path):
         docuploader.log.warning(
             (
