@@ -4,7 +4,7 @@
       "git": {
         "name": ".",
         "remote": "git@github.com:googleapis/docuploader",
-        "sha": "ba6ca02f7951e7c761341c8f3dac64c235246336"
+        "sha": "263c9e5141487e77ea16e64025afb19262f688cc"
       }
     },
     {

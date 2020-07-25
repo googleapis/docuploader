@@ -5,6 +5,6 @@
   "client_documentation": "https://github.com/googleapis/docuploader",
   "release_level": "beta",
   "language": "python",
-  "repo": "googleapis/python-docuploader",
+  "repo": "googleapis/docuploader",
   "distribution_name": "gcp-docuploader"
 }

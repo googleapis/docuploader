@@ -15,7 +15,7 @@
 
 set -eo pipefail
 
-cd github/python-docuploader
+cd github/docuploader
 
 # Disable buffering, so that the logs stream through.
 export PYTHONUNBUFFERED=1
