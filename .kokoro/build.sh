@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Copyright 2018 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,13 +15,25 @@
 
 set -eo pipefail
 
-cd github/docuploader
+cd github/python-docuploader
 
 # Disable buffering, so that the logs stream through.
 export PYTHONUNBUFFERED=1
 
-# Run tests
-nox -s lint test
+# Debug: show build environment
+env | grep KOKORO
 
-# remove all files, preventing kokoro from trying to sync them.
-rm -rf *
+# Setup service account credentials.
+export GOOGLE_APPLICATION_CREDENTIALS=${KOKORO_GFILE_DIR}/service-account.json
+
+# Setup project id.
+export PROJECT_ID=$(cat "${KOKORO_GFILE_DIR}/project-id.json")
+
+# Remove old nox
+python3.6 -m pip uninstall --yes --quiet nox-automation
+
+# Install nox
+python3.6 -m pip install --upgrade --quiet nox
+python3.6 -m nox --version
+
+python3.6 -m nox

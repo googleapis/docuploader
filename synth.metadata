@@ -1,0 +1,18 @@
+{
+  "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "git@github.com:googleapis/docuploader",
+        "sha": "ba6ca02f7951e7c761341c8f3dac64c235246336"
+      }
+    },
+    {
+      "git": {
+        "name": "synthtool",
+        "remote": "https://github.com/googleapis/synthtool.git",
+        "sha": "5506723fef367557d83cf072d0c18020c049fcb8"
+      }
+    }
+  ]
+}
