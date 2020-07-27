@@ -1,5 +1,4 @@
-#!/bin/bash
-# Copyright 2018 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,24 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set -eo pipefail
+import synthtool as s
+from synthtool import gcp
 
-cd github/docuploader
+common = gcp.CommonTemplates()
 
-# Disable buffering, so that the logs stream through.
-export PYTHONUNBUFFERED=1
+# ----------------------------------------------------------------------------
+# Add templated .kokoro files
+# ----------------------------------------------------------------------------
+templated_files = common.py_library()
+s.move(
+    templated_files / ".kokoro",
+    excludes=["docs/", "samples/", "publish-docs.sh", "test-samples.sh"],
+)
 
-# Debug: show build environment
-env | grep KOKORO
-
-# Setup service account credentials.
-export GOOGLE_APPLICATION_CREDENTIALS=${KOKORO_GFILE_DIR}/service-account.json
-
-# Setup project id.
-export PROJECT_ID=$(cat "${KOKORO_GFILE_DIR}/project-id.json")
-
-# Install nox
-python3.6 -m pip install --upgrade --quiet nox
-python3.6 -m nox --version
-
-python3.6 -m nox
+s.shell.run(["nox", "-s", "blacken"], hide_output=False)
