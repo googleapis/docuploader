@@ -3,8 +3,8 @@
     {
       "git": {
         "name": ".",
-        "remote": "git@github.com:googleapis/docuploader",
-        "sha": "263c9e5141487e77ea16e64025afb19262f688cc"
+        "remote": "https://github.com/googleapis/docuploader.git",
+        "sha": "c9dba349247309187a1514b41b619f43cac48d8b"
       }
     },
     {
