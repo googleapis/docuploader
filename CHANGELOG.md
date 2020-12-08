@@ -11,6 +11,13 @@
 
 - Expose new metadata fields to docuploader create-metadata ([#8](https://github.com/googleapis/docuploader/pull/8))
 
+## [0.2.0](https://www.github.com/googleapis/docuploader/compare/v0.1.0...v0.2.0) (2020-07-22)
+
+
+### Features
+
+* add tar.decompress ([#31](https://www.github.com/googleapis/docuploader/issues/31)) ([c22c803](https://www.github.com/googleapis/docuploader/commit/c22c803ad3d59076bf0d3ba78f25d99c7a6375f6))
+
 ## 0.1.0 (2020-07-14)
 
 

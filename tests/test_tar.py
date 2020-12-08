@@ -29,18 +29,31 @@ def make_tree(root, tree):
             (root / key).write_text(value)
 
 
+def read_tree(root):
+    root = pathlib.Path(root)
+    result = {}
+    for p in root.iterdir():
+        if p.is_dir():
+            result[p.name] = read_tree(p)
+        else:
+            with p.open() as f:
+                result[p.name] = f.readline()
+    return result
+
+
 def test_tar(tmpdir):
     root = tmpdir / "tar_test_dir"
-    make_tree(root, {"a.txt": "a", "subdir": {"b.txt": "b", "c.txt": "c"}})
+    in_tree = {"a.txt": "a", "subdir": {"b.txt": "b", "c.txt": "c"}}
+    make_tree(root, in_tree)
 
-    destination = tmpdir / "test.tar.gz"
-    tar.compress(root, destination)
+    tar_destination = tmpdir / "test.tar.gz"
+    tar.compress(root, tar_destination)
 
-    assert tarfile.is_tarfile(destination)
+    assert tarfile.is_tarfile(tar_destination)
 
-    tf = tarfile.open(destination, "r:gz")
-    files = sorted(tf.getnames())
+    decompress_destination = tmpdir / "tar_out_dir"
+    pathlib.Path(decompress_destination).mkdir(parents=True, exist_ok=True)
+    tar.decompress(tar_destination, decompress_destination)
 
-    assert files == [".", "./a.txt", "./subdir", "./subdir/b.txt", "./subdir/c.txt"]
-
-    assert tf.extractfile("./a.txt").read() == b"a"
+    got_tree = read_tree(decompress_destination)
+    assert got_tree == in_tree
