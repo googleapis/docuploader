@@ -19,7 +19,7 @@ from docuploader import log
 
 
 def run(
-    args: List, *, cwd: str = None, check: bool = True, hide_output: bool = True
+    args: List, *, cwd: str = None, check: bool = True, hide_output: bool = True, timeout: int = None
 ) -> subprocess.CompletedProcess:
     if hide_output:
         stdout: Optional[int] = subprocess.PIPE
@@ -34,6 +34,7 @@ def run(
             cwd=cwd,
             check=check,
             encoding="utf-8",
+            timeout=timeout,
         )
     except subprocess.CalledProcessError as exc:
         log.error(
