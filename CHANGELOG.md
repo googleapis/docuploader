@@ -11,6 +11,13 @@
 
 - Expose new metadata fields to docuploader create-metadata ([#8](https://github.com/googleapis/docuploader/pull/8))
 
+## [0.3.0](https://www.github.com/googleapis/docuploader/compare/v0.2.0...v0.3.0) (2021-01-08)
+
+
+### Features
+
+* adding timeout argument to be passable ([#43](https://www.github.com/googleapis/docuploader/issues/43)) ([5380c2f](https://www.github.com/googleapis/docuploader/commit/5380c2fc1da51c1b89c7b8251b575e84bde6a5f3))
+
 ## [0.2.0](https://www.github.com/googleapis/docuploader/compare/v0.1.0...v0.2.0) (2020-07-22)
 
 
