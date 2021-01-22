@@ -65,7 +65,9 @@ message Metadata {
     // `{stem}/{version}`.
     string serving_path = 10;
 
-    // The DocFX xref files and xref services required for these docs.
+    // The DocFX xref URLs required for these docs.
     repeated string xrefs = 11;
+
+    // The DocFX xref service URLs required for these docs.
     repeated string xref_services = 12;
 }

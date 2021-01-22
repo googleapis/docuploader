@@ -9,9 +9,7 @@ from google.protobuf.internal.containers import (
     RepeatedScalarFieldContainer as google___protobuf___internal___containers___RepeatedScalarFieldContainer,
 )
 
-from google.protobuf.message import (
-    Message as google___protobuf___message___Message,
-)
+from google.protobuf.message import Message as google___protobuf___message___Message
 
 from google.protobuf.timestamp_pb2 import (
     Timestamp as google___protobuf___timestamp_pb2___Timestamp,
@@ -23,9 +21,7 @@ from typing import (
     Text as typing___Text,
 )
 
-from typing_extensions import (
-    Literal as typing_extensions___Literal,
-)
+from typing_extensions import Literal as typing_extensions___Literal
 
 builtin___bool = bool
 builtin___bytes = bytes
