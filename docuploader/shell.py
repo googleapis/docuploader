@@ -19,7 +19,12 @@ from docuploader import log
 
 
 def run(
-    args: List, *, cwd: str = None, check: bool = True, hide_output: bool = True, timeout: int = None
+    args: List,
+    *,
+    cwd: str = None,
+    check: bool = True,
+    hide_output: bool = True,
+    timeout: int = None,
 ) -> subprocess.CompletedProcess:
     if hide_output:
         stdout: Optional[int] = subprocess.PIPE

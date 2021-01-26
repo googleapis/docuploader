@@ -22,7 +22,7 @@ dependencies = [
     "click",
     "colorlog",
     "google-cloud-storage<2.0.0dev",
-    "protobuf>=3.6.0"
+    "protobuf>=3.12.0"
 ]
 
 packages = setuptools.find_packages()
