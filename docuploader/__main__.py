@@ -17,7 +17,7 @@ import pathlib
 import shutil
 import sys
 import tempfile
-from typing import Optional
+from typing import List, Optional
 
 import click
 from google.protobuf import text_format, json_format  # type: ignore
@@ -156,6 +156,8 @@ def upload(
 @click.option("--issue-tracker", default="")
 @click.option("--stem", default="")
 @click.option("--serving-path", default="")
+@click.option("--xrefs", multiple=True, default=[])
+@click.option("--xref-services", multiple=True, default=[])
 @click.argument("destination", default="docs.metadata")
 def create_metadata(
     name: str,
@@ -168,6 +170,8 @@ def create_metadata(
     destination: str,
     stem: str,
     serving_path: str,
+    xrefs: List[str],
+    xref_services: List[str],
 ):
     metadata = metadata_pb2.Metadata()
     metadata.update_time.FromDatetime(datetime.datetime.utcnow())
@@ -180,6 +184,8 @@ def create_metadata(
     metadata.issue_tracker = issue_tracker
     metadata.stem = stem
     metadata.serving_path = serving_path
+    metadata.xrefs.extend(xrefs)
+    metadata.xref_services.extend(xref_services)
 
     destination_path = pathlib.Path(destination)
     destination_path.write_text(text_format.MessageToString(metadata))
