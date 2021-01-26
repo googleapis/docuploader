@@ -78,7 +78,6 @@ def upload(
         metadata_file = "docs.metadata"
         json_file = pathlib.Path(documentation_path) / "docs.metadata.json"
         if json_file.exists():
-            docuploader.log.info("found docs.metadata.json instead")
             metadata_file = "docs.metadata.json"
     metadata_path = pathlib.Path(metadata_file)
 
@@ -97,7 +96,7 @@ def upload(
         pass
 
     metadata = metadata_pb2.Metadata()
-    if metadata_file == "docs.metadata.json":
+    if metadata_file.endswith(".json"):
         json_format.Parse(metadata_path.read_text(), metadata)
     else:
         text_format.Merge(metadata_path.read_text(), metadata)
