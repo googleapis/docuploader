@@ -20,8 +20,7 @@ import tempfile
 from typing import Optional
 
 import click
-from google.protobuf import text_format  # type: ignore
-from google.protobuf import json_format
+from google.protobuf import text_format, json_format  # type: ignore
 import pkg_resources
 
 from docuploader.protos import metadata_pb2
@@ -75,14 +74,13 @@ def upload(
         )
         return sys.exit(1)
 
-    metadata_extension = metadata_file or "docs.metadata"
     if metadata_file is None:
-        if (pathlib.Path(documentation_path) / "docs.metadata.json").exists():
-            metadata_extension = "docs.metadata.json"
+        metadata_file = "docs.metadata"
+        json_file = pathlib.Path(documentation_path) / "docs.metadata.json"
+        if json_file.exists():
             docuploader.log.info("found docs.metadata.json instead")
-        metadata_path = pathlib.Path(documentation_path) / metadata_extension
-    else:
-        metadata_path = pathlib.Path(metadata_file)
+            metadata_file = "docs.metadata.json"
+    metadata_path = pathlib.Path(metadata_file)
 
     if not metadata_path.exists():
         docuploader.log.error(
@@ -94,12 +92,12 @@ def upload(
 
     docuploader.log.info("Loading up your metadata.")
     try:
-        shutil.copy(metadata_path, pathlib.Path(documentation_path) / metadata_extension)
+        shutil.copy(metadata_path, pathlib.Path(documentation_path) / metadata_file)
     except shutil.SameFileError:
         pass
 
     metadata = metadata_pb2.Metadata()
-    if metadata_extension == "docs.metadata.json":
+    if metadata_file == "docs.metadata.json":
         json_format.Parse(metadata_path.read_text(), metadata)
     else:
         text_format.Merge(metadata_path.read_text(), metadata)
