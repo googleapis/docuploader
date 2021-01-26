@@ -11,6 +11,14 @@
 
 - Expose new metadata fields to docuploader create-metadata ([#8](https://github.com/googleapis/docuploader/pull/8))
 
+## [0.4.0](https://www.github.com/googleapis/docuploader/compare/v0.3.0...v0.4.0) (2021-01-26)
+
+
+### Features
+
+* add xref docs.metadata fields ([#46](https://www.github.com/googleapis/docuploader/issues/46)) ([c68c82e](https://www.github.com/googleapis/docuploader/commit/c68c82e09b50802237ae30990b959bddade1c517))
+* adding docs.metadata.json support ([#48](https://www.github.com/googleapis/docuploader/issues/48)) ([935aa22](https://www.github.com/googleapis/docuploader/commit/935aa221c91ae58b8e404bc229ff7ea34698e302))
+
 ## [0.3.0](https://www.github.com/googleapis/docuploader/compare/v0.2.0...v0.3.0) (2021-01-08)
 
 
