@@ -21,6 +21,7 @@ from typing import Optional
 
 import click
 from google.protobuf import text_format  # type: ignore
+from google.protobuf import json_format
 import pkg_resources
 
 from docuploader.protos import metadata_pb2
@@ -74,8 +75,12 @@ def upload(
         )
         return sys.exit(1)
 
+    metadata_extension = metadata_file or "docs.metadata"
     if metadata_file is None:
-        metadata_path = pathlib.Path(documentation_path) / "docs.metadata"
+        if (pathlib.Path(documentation_path) / "docs.metadata.json").exists():
+            metadata_extension = "docs.metadata.json"
+            docuploader.log.info("found docs.metadata.json instead")
+        metadata_path = pathlib.Path(documentation_path) / metadata_extension
     else:
         metadata_path = pathlib.Path(metadata_file)
 
@@ -89,12 +94,15 @@ def upload(
 
     docuploader.log.info("Loading up your metadata.")
     try:
-        shutil.copy(metadata_path, pathlib.Path(documentation_path) / "docs.metadata")
+        shutil.copy(metadata_path, pathlib.Path(documentation_path) / metadata_extension)
     except shutil.SameFileError:
         pass
 
     metadata = metadata_pb2.Metadata()
-    text_format.Merge(metadata_path.read_text(), metadata)
+    if metadata_extension == "docs.metadata.json":
+        json_format.Parse(metadata_path.read_text(), metadata)
+    else:
+        text_format.Merge(metadata_path.read_text(), metadata)
 
     # Validating metadata for required fields
 
