@@ -129,6 +129,10 @@ def upload(
             f"{metadata.language}-{metadata.name}-{metadata.version}.tar.gz"
         )
         if destination_prefix:
+            #  destination_prefix should end in alphanumeric character
+            while not destination_prefix[-1].isalnum():
+                destination_prefix = destination_prefix[:-1]
+
             destination_name = f"{destination_prefix}-{destination_name}"
 
         docuploader.upload.upload(
