@@ -11,6 +11,13 @@
 
 - Expose new metadata fields to docuploader create-metadata ([#8](https://github.com/googleapis/docuploader/pull/8))
 
+### [0.4.1](https://www.github.com/googleapis/docuploader/compare/v0.4.0...v0.4.1) (2021-02-03)
+
+
+### Bug Fixes
+
+* update destination_prefix to allow 'docfx-' ([#52](https://www.github.com/googleapis/docuploader/issues/52)) ([ef4532a](https://www.github.com/googleapis/docuploader/commit/ef4532a409926cb65ec5629df536e46a026feab2))
+
 ## [0.4.0](https://www.github.com/googleapis/docuploader/compare/v0.3.0...v0.4.0) (2021-01-26)
 
 
