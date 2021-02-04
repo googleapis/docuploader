@@ -3,15 +3,15 @@
     {
       "git": {
         "name": ".",
-        "remote": "https://github.com/googleapis/docuploader.git",
-        "sha": "c9dba349247309187a1514b41b619f43cac48d8b"
+        "remote": "git@github.com:googleapis/docuploader",
+        "sha": "1c0845212c2d2212c08323a02f2371b48f088f56"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "5dfda5621df45b71b6e88544ebbb53b1a8c90214"
+        "sha": "27b2d4f4674840628d0b75c5941e89c12af4764f"
       }
     }
   ]
