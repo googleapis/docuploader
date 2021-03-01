@@ -113,7 +113,7 @@ def upload(
         raise Exception("Metadata field 'language' is required.")
 
     # make final updates to java docs before upload
-    if metadata.language.lower() == "java":
+    if metadata.language.lower() == "java" and metadata.destination_prefix :
         prepare_java_toc(documentation_path + "/toc.yml", metadata.name.lower())
 
     docuploader.log.success(
