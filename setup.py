@@ -14,43 +14,44 @@
 
 import setuptools
 
-name = 'gcp-docuploader'
-description = ''
+name = "gcp-docuploader"
+description = ""
 version = "0.4.1"
-release_status = 'Development Status :: 3 - Alpha'
+release_status = "Development Status :: 3 - Alpha"
 dependencies = [
-    "click", "colorlog", "google-cloud-storage<2.0.0dev", "protobuf>=3.12.0",
-    "PyYAML"
+    "click",
+    "colorlog",
+    "google-cloud-storage<2.0.0dev",
+    "protobuf>=3.12.0",
+    "PyYAML",
 ]
 
 packages = setuptools.find_packages()
-scripts = [
-    'docuploader=docuploader.__main__:main'
-]
+scripts = ["docuploader=docuploader.__main__:main"]
 
 setuptools.setup(
     name=name,
     version=version,
     description=description,
-    author='Google LLC',
-    author_email='theaflowers@google.com',
-    license='Apache 2.0',
-    url='',
+    author="Google LLC",
+    author_email="theaflowers@google.com",
+    license="Apache 2.0",
+    url="",
     classifiers=[
         release_status,
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: Apache Software License',
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 3.6',
-        'Operating System :: OS Independent',
-        'Topic :: Internet',
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: Apache Software License",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3.6",
+        "Operating System :: OS Independent",
+        "Topic :: Internet",
     ],
-    platforms='Posix; MacOS X; Windows',
+    platforms="Posix; MacOS X; Windows",
     packages=packages,
     install_requires=dependencies,
     include_package_data=True,
     zip_safe=False,
     entry_points={
-        'console_scripts': scripts,
+        "console_scripts": scripts,
     },
 )
