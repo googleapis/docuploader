@@ -40,9 +40,6 @@ python3 -m pip uninstall --yes --quiet nox-automation
 python3 -m pip install --upgrade --quiet nox
 python3 -m nox --version
 
-# Install PyYAML
-python3 -m pip install PyYAML
-
 # If NOX_SESSION is set, it only runs the specified session,
 # otherwise run all the sessions.
 if [[ -n "${NOX_SESSION:-}" ]]; then
