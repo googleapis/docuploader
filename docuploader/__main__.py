@@ -114,7 +114,7 @@ def upload(
 
     # make final updates to java docs before upload
     if metadata.language.lower() == "java" and metadata.destination_prefix :
-        prepare_java_toc(documentation_path + "/toc.yml", metadata.name.lower())
+        prepare_java_toc(documentation_path + "/toc.yml", metadata.name)
 
     docuploader.log.success(
         f"Looks like we're uploading {metadata.name} version {metadata.version} for {metadata.language}."
