@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import yaml
+from docuploader import log
 
 
 def prepare_java_toc(toc_file, product_name):
@@ -37,5 +38,5 @@ def prepare_java_toc(toc_file, product_name):
                 yaml.dump(toc, f, default_flow_style=False, sort_keys=False)
 
         except yaml.YAMLError as e:
-            print("Error parsing toc file", toc_file)
+            log.error("Error parsing java toc file")
             raise e
