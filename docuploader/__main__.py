@@ -28,6 +28,7 @@ import docuploader.credentials
 import docuploader.log
 import docuploader.tar
 import docuploader.upload
+from docuploader.prepare_java import prepare_java_toc
 
 try:
     VERSION = pkg_resources.get_distribution("gcp-docuploader").version
@@ -110,6 +111,10 @@ def upload(
         raise Exception("Metadata field 'version' is required.")
     if not metadata.language:
         raise Exception("Metadata field 'language' is required.")
+
+    # make final updates to java docs before upload
+    if metadata.language.lower() == "java":
+        prepare_java_toc(documentation_path + "/toc.yml", metadata.name.lower())
 
     docuploader.log.success(
         f"Looks like we're uploading {metadata.name} version {metadata.version} for {metadata.language}."
