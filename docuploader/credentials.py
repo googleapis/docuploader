@@ -17,16 +17,18 @@
 When running this tool, there are two possible scenarios:
 
 1. The tool is running as part of CI to publish the docs. In that case,
-   credentials should be at a well-known location.
+   credentials should be at a well-known location or use ADC.
 2. The tool is running locally as part of development. In that case,
-   the credentials should be passed into the command-line.
+   the credentials should be passed into the command-line or via ADC.
 
-(2) takes precedence. Command-line params also override local files. This
-module deals with (1), while __main__ handles (2).
+(2) takes precedence. Command-line params also override local files.
 """
 
 import os
-from typing import List
+from typing import List, Optional
+
+from google.oauth2 import service_account
+import google.auth
 
 _WELL_KNOWN_LOCATIONS: List[str] = []
 
@@ -38,7 +40,21 @@ if "KOKORO_KEYSTORE_DIR" in os.environ:
     )
 
 
-def find():
+def find_path():
     for location in _WELL_KNOWN_LOCATIONS:
         if os.path.exists(location):
             return location
+    return ""
+
+
+def find(credentials_file: Optional[str]):
+    if not credentials_file:
+        credentials_file = find_path()
+
+    if credentials_file != "":
+        credentials = service_account.Credentials.from_service_account_file(
+            credentials_file
+        )
+        return credentials, credentials.project_id
+    else:
+        return google.auth.default()
