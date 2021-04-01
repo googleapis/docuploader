@@ -11,6 +11,13 @@
 
 - Expose new metadata fields to docuploader create-metadata ([#8](https://github.com/googleapis/docuploader/pull/8))
 
+## [0.5.0](https://www.github.com/googleapis/docuploader/compare/v0.4.1...v0.5.0) (2021-04-01)
+
+
+### Features
+
+* support Application Default Credentials ([#62](https://www.github.com/googleapis/docuploader/issues/62)) ([844b315](https://www.github.com/googleapis/docuploader/commit/844b3150b1ce143ab6fac3f8866bc08d59c9f1fd))
+
 ### [0.4.1](https://www.github.com/googleapis/docuploader/compare/v0.4.0...v0.4.1) (2021-02-03)
 
 
