@@ -15,20 +15,18 @@
 """Handles uploading files to Google Cloud Storage."""
 
 from google.cloud import storage
-from google.oauth2 import service_account
-
-
-def _make_client(credentials_file: str) -> storage.Client:
-    credentials = service_account.Credentials.from_service_account_file(
-        credentials_file
-    )
-    return storage.Client(project=credentials.project_id, credentials=credentials)
+from google.auth.credentials import Credentials
 
 
 def upload(
-    *, source: str, destination: str, bucket: str, credentials_file: str
+    *,
+    source: str,
+    destination: str,
+    bucket: str,
+    credentials: Credentials,
+    project_id: str
 ) -> storage.Blob:
-    client = _make_client(credentials_file)
+    client = storage.Client(project=project_id, credentials=credentials)
     bucket_ = client.get_bucket(bucket)
     blob = bucket_.blob(destination)
     blob.upload_from_filename(filename=source)

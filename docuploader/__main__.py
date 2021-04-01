@@ -51,7 +51,7 @@ def main():
 )
 @click.option(
     "--credentials",
-    default=docuploader.credentials.find(),
+    default=None,
     help="Path to the credentials file to use for Google Cloud Storage.",
 )
 @click.option("--metadata-file", default=None, help="Path to the docs.metadata file.")
@@ -68,9 +68,10 @@ def upload(
     destination_prefix: str,
     documentation_path: str,
 ):
+    credentials, project_id = docuploader.credentials.find(credentials)
     if not credentials:
         docuploader.log.error(
-            "You need credentials to run this! Specify --credentials on the command line."
+            "You need credentials to run this! Use Application Default Credentials or specify --credentials on the command line."
         )
         return sys.exit(1)
 
@@ -139,7 +140,8 @@ def upload(
             source=tar_filename,
             destination=destination_name,
             bucket=staging_bucket,
-            credentials_file=credentials,
+            credentials=credentials,
+            project_id=project_id,
         )
 
     docuploader.log.success(
