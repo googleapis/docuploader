@@ -47,7 +47,7 @@ def find_path():
     return ""
 
 
-def find(credentials_file: Optional[str]):
+def find(credentials_file: Optional[str] = ""):
     if not credentials_file:
         credentials_file = find_path()
 
