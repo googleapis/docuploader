@@ -4,14 +4,14 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/docuploader.git",
-        "sha": "bc15a0ba924483372b2f9c82a7b9ad83eea72b6a"
+        "sha": "c5e7e8ebebc30047ca4bf321879552953d2353e7"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "79c8dd7ee768292f933012d3a69a5b4676404cda"
+        "sha": "043cc620d6a6111816d9e09f2a97208565fde958"
       }
     }
   ],
