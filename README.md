@@ -20,7 +20,21 @@ There are two steps for uploading docs:
    for the format.
    * You can use `docuploader create-metadata` to create a `docs.metadata` file.
    * Alternatively, you can create a `docs.metadata.json` file independently.
-1. Upload the docs with `docuploader upload`.
+1. Upload the docs with `docuploader upload`:
+   ```
+   Usage: docuploader upload [OPTIONS] DOCUMENTATION_PATH
+
+   Options:
+   --staging-bucket TEXT      The bucket to upload the staged documentation to.
+   --credentials TEXT         Path to the credentials file to use for Google
+                              Cloud Storage.
+
+   --metadata-file TEXT       Path to the docs.metadata file.
+   --destination-prefix TEXT  Prefix to include when uploading tar file. A -
+                              will be added after the prefix, if there is one.
+
+   --help                     Show this message and exit.
+   ```
 
 `docuploader` can use ADC or a given service account.
 
