@@ -21,9 +21,6 @@ common = gcp.CommonTemplates()
 # Add templated .kokoro files
 # ----------------------------------------------------------------------------
 templated_files = common.py_library()
-s.move(
-    templated_files / ".kokoro",
-    excludes=["docs/", "samples/", "publish-docs.sh", "test-samples.sh"],
-)
+s.move(templated_files / ".kokoro")
 
 s.shell.run(["nox", "-s", "blacken"], hide_output=False)
