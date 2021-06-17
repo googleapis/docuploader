@@ -14,30 +14,31 @@
 
 import nox
 
+DEFAULT_PYTHON_VERSION = "3.8"
 
-@nox.session(python='3.6')
+@nox.session(python=DEFAULT_PYTHON_VERSION)
 def blacken(session):
     session.install('black')
     session.run('black', 'docuploader', 'tests')
 
 
-@nox.session(python='3.6')
+@nox.session(python=DEFAULT_PYTHON_VERSION)
 def lint(session):
-    session.install('mypy', 'flake8', 'black')
+    session.install('mypy', 'flake8', 'black', 'types-pkg_resources')
     session.run('pip', 'install', '-e', '.')
     session.run('black', '--check', 'docuploader', 'tests')
     session.run('flake8', 'docuploader', 'tests')
     session.run('mypy', 'docuploader')
 
 
-@nox.session(python='3.6')
+@nox.session(python=DEFAULT_PYTHON_VERSION)
 def test(session):
     session.install('pytest', 'pytest-cov')
     session.run('pip', 'install', '-e', '.')
     session.run('pytest', '--cov-report', 'term-missing', '--cov', 'docuploader', 'tests', *session.posargs)
 
 
-@nox.session(python='3.6')
+@nox.session(python=DEFAULT_PYTHON_VERSION)
 def generate_protos(session):
     session.install("grpcio-tools", "mypy-protobuf")
     session.run(
