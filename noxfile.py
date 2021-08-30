@@ -14,7 +14,7 @@
 
 import nox
 
-DEFAULT_PYTHON_VERSION = "3.8"
+DEFAULT_PYTHON_VERSION = "3.9"
 
 @nox.session(python=DEFAULT_PYTHON_VERSION)
 def blacken(session):
