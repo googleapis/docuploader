@@ -15,9 +15,11 @@
 import logging
 
 try:
-    from colorlog import ColoredFormatter
+    from colorlog import ColoredFormatter as _ColoredFormatter
 except ImportError:
     ColoredFormatter = None
+else:
+    ColoredFormatter = _ColoredFormatter
 
 SUCCESS = 25
 
@@ -70,12 +72,12 @@ def critical(*args, **kwargs):
     logger.critical(*args, **kwargs)
 
 
-def _setup_logging(color: bool = bool(ColoredFormatter)):
+def _setup_logging():
     root_logger = logging.getLogger()
     root_logger.setLevel(logging.DEBUG)
     handler = logging.StreamHandler()
 
-    if color is True:
+    if ColoredFormatter is not None:
         formatter = ColoredFormatter(
             "%(purple)s%(name)s > %(log_color)s%(message)s",
             reset=True,
