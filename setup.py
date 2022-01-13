@@ -21,7 +21,7 @@ release_status = 'Development Status :: 3 - Alpha'
 dependencies = [
     "click",
     "colorlog",
-    "google-cloud-storage<2.0.0dev",
+    "google-cloud-storage<3.0.0dev",
     "protobuf>=3.12.0",
     "six"
 ]
