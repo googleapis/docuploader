@@ -39,4 +39,4 @@ There are two steps for uploading docs:
 `docuploader` can use ADC or a given service account.
 
 For an example of using `docuploader`, see
-[example usage in googleapis/google-cloud-go](https://github.com/googleapis/google-cloud-go/blob/master/internal/kokoro/publish_docs.sh).
+[example usage in googleapis/google-cloud-go](https://github.com/googleapis/google-cloud-go/blob/main/internal/kokoro/publish_docs.sh).

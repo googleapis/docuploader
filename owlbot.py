@@ -25,9 +25,3 @@ s.move(templated_files / ".kokoro")
 
 s.shell.run(["nox", "-s", "blacken"], hide_output=False)
 
-s.replace(
-  ".kokoro/*",
-  "master",
-  "main"
-)
-
