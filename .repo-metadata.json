@@ -3,8 +3,9 @@
   "name_pretty": "Docuploader",
   "product_documentation": "https://github.com/googleapis/docuploader",
   "client_documentation": "https://github.com/googleapis/docuploader",
-  "release_level": "beta",
+  "release_level": "preview",
   "language": "python",
   "repo": "googleapis/docuploader",
-  "distribution_name": "gcp-docuploader"
+  "distribution_name": "gcp-docuploader",
+  "library_type": "OTHER"
 }
