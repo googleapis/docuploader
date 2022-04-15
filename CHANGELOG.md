@@ -11,6 +11,13 @@
 
 - Expose new metadata fields to docuploader create-metadata ([#8](https://github.com/googleapis/docuploader/pull/8))
 
+### [0.6.3](https://github.com/googleapis/docuploader/compare/v0.6.2...v0.6.3) (2022-04-15)
+
+
+### Documentation
+
+* update README with ADC credentials command ([#101](https://github.com/googleapis/docuploader/issues/101)) ([f515bbc](https://github.com/googleapis/docuploader/commit/f515bbc1add620f9e11c7d5f002d3eb743762a64))
+
 ### [0.6.2](https://github.com/googleapis/docuploader/compare/v0.6.1...v0.6.2) (2022-01-13)
 
 
