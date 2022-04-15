@@ -36,7 +36,7 @@ There are two steps for uploading docs:
    --help                     Show this message and exit.
    ```
 
-`docuploader` can use ADC (Application Default Credentials) or a given service account. To use ADC, run ```gcloud auth application-default login``` prior to upload to gain credentials.
+`docuploader` can use ADC (Application Default Credentials) or a given service account. To use ADC, run `gcloud auth application-default login` prior to upload to gain credentials.
 
 For an example of using `docuploader`, see
 [example usage in googleapis/google-cloud-go](https://github.com/googleapis/google-cloud-go/blob/main/internal/kokoro/publish_docs.sh).
