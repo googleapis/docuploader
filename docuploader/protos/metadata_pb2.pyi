@@ -79,14 +79,19 @@ class Metadata(google.protobuf.message.Message):
     """
 
     @property
-    def xrefs(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
+    def xrefs(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
         """The DocFX xref URLs required for these docs."""
         pass
     @property
-    def xref_services(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
+    def xref_services(
+        self,
+    ) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[typing.Text]:
         """The DocFX xref service URLs required for these docs."""
         pass
-    def __init__(self,
+    def __init__(
+        self,
         *,
         update_time: typing.Optional[google.protobuf.timestamp_pb2.Timestamp] = ...,
         name: typing.Text = ...,
@@ -100,7 +105,38 @@ class Metadata(google.protobuf.message.Message):
         serving_path: typing.Text = ...,
         xrefs: typing.Optional[typing.Iterable[typing.Text]] = ...,
         xref_services: typing.Optional[typing.Iterable[typing.Text]] = ...,
-        ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["update_time",b"update_time"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["distribution_name",b"distribution_name","github_repository",b"github_repository","issue_tracker",b"issue_tracker","language",b"language","name",b"name","product_page",b"product_page","serving_path",b"serving_path","stem",b"stem","update_time",b"update_time","version",b"version","xref_services",b"xref_services","xrefs",b"xrefs"]) -> None: ...
+    ) -> None: ...
+    def HasField(
+        self, field_name: typing_extensions.Literal["update_time", b"update_time"]
+    ) -> builtins.bool: ...
+    def ClearField(
+        self,
+        field_name: typing_extensions.Literal[
+            "distribution_name",
+            b"distribution_name",
+            "github_repository",
+            b"github_repository",
+            "issue_tracker",
+            b"issue_tracker",
+            "language",
+            b"language",
+            "name",
+            b"name",
+            "product_page",
+            b"product_page",
+            "serving_path",
+            b"serving_path",
+            "stem",
+            b"stem",
+            "update_time",
+            b"update_time",
+            "version",
+            b"version",
+            "xref_services",
+            b"xref_services",
+            "xrefs",
+            b"xrefs",
+        ],
+    ) -> None: ...
+
 global___Metadata = Metadata
