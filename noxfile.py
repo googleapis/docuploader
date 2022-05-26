@@ -19,7 +19,7 @@ DEFAULT_PYTHON_VERSION = "3.8"
 @nox.session(python=DEFAULT_PYTHON_VERSION)
 def blacken(session):
     session.install('black')
-    session.run('black', 'docuploader', 'tests')
+    session.run('black', 'docuploader', 'tests', '--extend-exclude', 'docuploader/protos')
 
 
 @nox.session(python=DEFAULT_PYTHON_VERSION)
