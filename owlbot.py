@@ -23,5 +23,4 @@ common = gcp.CommonTemplates()
 templated_files = common.py_library()
 s.move(templated_files / ".kokoro")
 
-s.shell.run(["nox", "-s", "blacken"], hide_output=False)
-
+s.shell.run(["nox", "-s", "generate_protos", "blacken"], hide_output=False)
