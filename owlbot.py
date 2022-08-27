@@ -22,5 +22,6 @@ common = gcp.CommonTemplates()
 # ----------------------------------------------------------------------------
 templated_files = common.py_library()
 s.move(templated_files / ".kokoro")
+s.move(templated_files / "renovate.json")
 
 s.shell.run(["nox", "-s", "generate_protos", "blacken"], hide_output=False)
