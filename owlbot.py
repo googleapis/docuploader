@@ -21,7 +21,14 @@ common = gcp.CommonTemplates()
 # Add templated .kokoro files
 # ----------------------------------------------------------------------------
 templated_files = common.py_library()
-s.move(templated_files / ".kokoro")
+exclude_sample_paths = [
+    ".kokoro/samples",
+    ".kokoro/test-samples.sh",
+    ".kokoro/test-samples-against-head.sh",
+]
+s.move(templated_files / ".kokoro", excludes=exclude_sample_paths)
 s.move(templated_files / "renovate.json")
 
 s.shell.run(["nox", "-s", "generate_protos", "blacken"], hide_output=False)
+
+
