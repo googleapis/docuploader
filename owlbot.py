@@ -18,10 +18,34 @@ from synthtool import gcp
 common = gcp.CommonTemplates()
 
 # ----------------------------------------------------------------------------
-# Add templated .kokoro files
+# Add templated files
 # ----------------------------------------------------------------------------
 templated_files = common.py_library()
-s.move(templated_files / ".kokoro")
-s.move(templated_files / "renovate.json")
-
+s.move(
+    templated_files,
+    excludes=[
+        ".flake8",
+        ".trampolinerc",
+        "MANIFEST.in",
+        "setup.cfg",
+        ".coveragerc",
+        "noxfile.py",  # repo uses nox
+        "docs/**/*",  # no docs to publish
+        ".github/CODEOWNERS", # using custom CODEOWNERS for this repo
+        ".kokoro/docs/",
+        ".kokoro/docker/**",
+        ".kokoro/publish-docs.sh",
+        ".kokoro/samples/**", # no samples
+        ".kokoro/test-sample*",
+        "CONTRIBUTING.rst",  # repo has a CONTRIBUTING.md
+        ".github/CONTRIBUTING.md",
+        ".github/PULL_REQUEST_TEMPLATE.md",
+        ".github/snippet-bot.yml",
+        ".gitignore",
+        ".github/workflows", # exclude templated gh actions
+        "scripts/**",
+        "testing/",
+        "README.rst",
+    ],
+)
 s.shell.run(["nox", "-s", "generate_protos", "blacken"], hide_output=False)
