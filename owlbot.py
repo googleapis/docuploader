@@ -43,6 +43,7 @@ s.move(
         ".github/snippet-bot.yml",
         ".gitignore",
         ".github/workflows", # exclude templated gh actions
+        "scripts/**",
         "testing/",
         "README.rst",
     ],
