@@ -11,6 +11,13 @@
 
 - Expose new metadata fields to docuploader create-metadata ([#8](https://github.com/googleapis/docuploader/pull/8))
 
+## [0.6.4](https://github.com/googleapis/docuploader/compare/v0.6.3...v0.6.4) (2022-10-07)
+
+
+### Bug Fixes
+
+* **tar:** Add fallback tar without --force-local ([#139](https://github.com/googleapis/docuploader/issues/139)) ([06583af](https://github.com/googleapis/docuploader/commit/06583afcfc23ad305af433015b4e0b370b107928))
+
 ### [0.6.3](https://github.com/googleapis/docuploader/compare/v0.6.2...v0.6.3) (2022-04-15)
 
 
