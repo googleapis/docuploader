@@ -45,7 +45,7 @@ def compress(directory: str, destination: str) -> subprocess.CompletedProcess:
     except subprocess.CalledProcessError:
         # Try again without the force-local flag, which is not supported in Mac
         # tar installations.
-        log.info('Trying tar again without the --force-local flag')
+        log.info("Trying tar again without the --force-local flag")
         return shell.run(
             [
                 "tar",
@@ -58,6 +58,7 @@ def compress(directory: str, destination: str) -> subprocess.CompletedProcess:
             ],
             hide_output=False,
         )
+
 
 def decompress(archive: str, destination: str) -> subprocess.CompletedProcess:
     """Decompress the given tarfile to the destination."""
