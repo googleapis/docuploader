@@ -17,35 +17,53 @@
 import subprocess
 
 from docuploader import shell
+from docuploader import log
 
 
 def compress(directory: str, destination: str) -> subprocess.CompletedProcess:
     """Compress the given directory into the tarfile at destination."""
     # Note: we don't use the stdlib's "tarfile" module for performance reasons.
-    # While it can handle creating tarfiles, its not as efficient on large
+    # While it can handle creating tarfiles, it's not as efficient on large
     # numbers of files like the tar command.
-    return shell.run(
-        [
-            "tar",
-            "--create",
-            f"--directory={directory}",
-            f"--file={destination}",
-            # Treat a colon in the filename as part of the filename,
-            # not an indication of a remote file. This is required in order to
-            # handle canonical filenames on Windows.
-            "--force-local",
-            "--gzip",
-            "--verbose",
-            ".",
-        ],
-        hide_output=False,
-    )
+    try:
+        return shell.run(
+            [
+                "tar",
+                "--create",
+                f"--directory={directory}",
+                f"--file={destination}",
+                # Treat a colon in the filename as part of the filename,
+                # not an indication of a remote file. This is required in order to
+                # handle canonical filenames on Windows.
+                "--force-local",
+                "--gzip",
+                "--verbose",
+                ".",
+            ],
+            hide_output=False,
+        )
+    except subprocess.CalledProcessError:
+        # Try again without the force-local flag, which is not supported in Mac
+        # tar installations.
+        log.info("Trying tar again without the --force-local flag")
+        return shell.run(
+            [
+                "tar",
+                "--create",
+                f"--directory={directory}",
+                f"--file={destination}",
+                "--gzip",
+                "--verbose",
+                ".",
+            ],
+            hide_output=False,
+        )
 
 
 def decompress(archive: str, destination: str) -> subprocess.CompletedProcess:
     """Decompress the given tarfile to the destination."""
     # Note: we don't use the stdlib's "tarfile" module for performance reasons.
-    # While it can handle creating tarfiles, its not as efficient on large
+    # While it can handle creating tarfiles, it's not as efficient on large
     # numbers of files like the tar command.
     return shell.run(
         [
