@@ -61,9 +61,7 @@ The tarballs containig DocFX YAML files must adhere to the following requirement
     * Subdirectories (`./product/page1.yml`, `./product/page2.yml`)
     * Special subdirectories (`./api`, `./examples`)
 
-   **Note:** if documentation files are in the root directory or subdirectories,
-   do not put them in special directories. If you use special directories, only use
-   special directories and do not place documentation in the root or other
-   subdirectories.
+   **Note:** If you use special subdirectories, only use special subdirectories
+   and do not place documentation in the root or other subdirectories.
 
 (1) and (2) will be checked and enforced if you use `docuploader upload`.
