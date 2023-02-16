@@ -63,3 +63,5 @@ The tarballs containig DocFX YAML files must adhere to the following requirement
    do not put them in special directories. If you use special directories, only use
    special directories and do not place documentation in the root or other
    subdirectories.
+
+(1) and (2) will be checked and enforced if you use `docuploader upload`.
