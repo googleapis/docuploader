@@ -40,3 +40,26 @@ There are two steps for uploading docs:
 
 For an example of using `docuploader`, see
 [example usage in googleapis/google-cloud-go](https://github.com/googleapis/google-cloud-go/blob/main/internal/kokoro/publish_docs.sh).
+
+## Requirements for DocFX YAML tarballs
+
+The tarballs containig DocFX YAML files must adhere to the following requirements:
+
+1. Contains `docs.metadata` or `docs.metadata.json` at the root directory of the
+   tarball.
+1. `docs.metadata` or `docs.metadata.json` must have
+    * `name`
+    * `version`
+    * `language`
+   See [`metadata.proto`](./docuploader/protos/metadata.proto) for other
+   supported fields.
+1. `toc.yml` or `toc.html` file exists at the root directory or in special
+   subdirectories (`./api/toc.yml`).
+1. documentation files may either be in
+    * Root directory (`./page1.yml`, `./page2.yml`)
+    * Subdirectories (`./product/page1.yml`, `./product/page2.yml`)
+    * Special subdirectories (`./api`, `./examples`)
+   **Note:** if documentation files are in the root directory or subdirectories,
+   do not put them in special directories. If you use special directories, only use
+   special directories and do not place documentation in the root or other
+   subdirectories.
