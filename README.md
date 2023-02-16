@@ -51,6 +51,7 @@ The tarballs containig DocFX YAML files must adhere to the following requirement
     * `name`
     * `version`
     * `language`
+
    See [`metadata.proto`](./docuploader/protos/metadata.proto) for other
    supported fields.
 1. `toc.yml` or `toc.html` file exists at the root directory or in special
@@ -59,6 +60,7 @@ The tarballs containig DocFX YAML files must adhere to the following requirement
     * Root directory (`./page1.yml`, `./page2.yml`)
     * Subdirectories (`./product/page1.yml`, `./product/page2.yml`)
     * Special subdirectories (`./api`, `./examples`)
+
    **Note:** if documentation files are in the root directory or subdirectories,
    do not put them in special directories. If you use special directories, only use
    special directories and do not place documentation in the root or other
