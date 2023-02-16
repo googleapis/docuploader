@@ -54,7 +54,11 @@ def main():
     default=None,
     help="Path to the credentials file to use for Google Cloud Storage.",
 )
-@click.option("--metadata-file", default=None, help="Path to the docs.metadata file.")
+@click.option(
+    "--metadata-file",
+    default=None,
+    help="Path to the docs.metadata file. The path must be relative to the CWD.",
+)
 @click.option(
     "--destination-prefix",
     default=None,
