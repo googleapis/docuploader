@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import datetime
+import os
 import pathlib
 import shutil
 import sys
@@ -85,6 +86,23 @@ def upload(
     if not metadata_path.exists():
         docuploader.log.error(
             "You need metadata to upload the docs. You can generate it with docuploader create-metadata"
+        )
+        return sys.exit(1)
+
+    try:
+        if not os.listdir(documentation_path):
+            docuploader.log.error(
+                f"The documentation path given ({documentation_path}) does not contain any documentation files."
+            )
+            return sys.exit(1)
+    except FileNotFoundError:
+        docuploader.log.error(
+            f"The documentation path given ({documentation_path}) does not exist relative to CWD."
+        )
+        return sys.exit(1)
+    except NotADirectoryError:
+        docuploader.log.error(
+            f"The documentation path given ({documentation_path}) is a file not a directory."
         )
         return sys.exit(1)
 
