@@ -92,7 +92,11 @@ def upload(
 
     docuploader.log.info("Loading up your metadata.")
     try:
-        shutil.copy(metadata_path, pathlib.Path(documentation_path) / metadata_file)
+        if documentation_path not in metadata_file:
+            shutil.copy(
+                metadata_path,
+                pathlib.Path(documentation_path) / metadata_file,
+            )
     except shutil.SameFileError:
         pass
 
