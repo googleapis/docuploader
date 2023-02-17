@@ -36,6 +36,11 @@ There are two steps for uploading docs:
    --help                     Show this message and exit.
    ```
 
+   docuploader will take the documentation in `DOCUMENTATION_PATH`,
+   `docs.metadata` or `docs.metadata.json` and create a tarball (`tgz`), then
+   send the tarball to the bucket specified in `--staging-bucket` option with a
+   prefix specified in `--destination-prefix`.
+
 `docuploader` can use ADC (Application Default Credentials) or a given service account. To use ADC, run `gcloud auth application-default login` prior to upload to gain credentials.
 
 For an example of using `docuploader`, see
