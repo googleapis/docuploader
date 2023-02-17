@@ -95,14 +95,12 @@ def upload(
     docuploader.log.success("Let's upload some docs!")
 
     docuploader.log.info("Loading up your metadata.")
-    try:
-        if documentation_path not in metadata_file:
-            shutil.copy(
-                metadata_path,
-                pathlib.Path(documentation_path) / metadata_file,
-            )
-    except shutil.SameFileError:
-        pass
+
+    if documentation_path not in metadata_file:
+        shutil.copy(
+            metadata_path,
+            pathlib.Path(documentation_path) / metadata_file,
+        )
 
     metadata = metadata_pb2.Metadata()
     if metadata_file.endswith(".json"):
