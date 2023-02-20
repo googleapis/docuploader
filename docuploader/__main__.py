@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import datetime
+import os
 import pathlib
 import shutil
 import sys
@@ -77,7 +78,7 @@ def upload(
         docuploader.log.error(
             "You need credentials to run this! Use Application Default Credentials or specify --credentials on the command line."
         )
-        return sys.exit(1)
+        sys.exit(1)
 
     if metadata_file is None:
         metadata_file = "docs.metadata"
@@ -90,7 +91,23 @@ def upload(
         docuploader.log.error(
             "You need metadata to upload the docs. You can generate it with docuploader create-metadata"
         )
-        return sys.exit(1)
+        sys.exit(1)
+    try:
+        if not os.listdir(documentation_path):
+            docuploader.log.error(
+                f"The documentation path given ({documentation_path}) does not contain any documentation files."
+            )
+            sys.exit(1)
+    except FileNotFoundError:
+        docuploader.log.error(
+            f"The documentation path given ({documentation_path}) does not exist relative to CWD."
+        )
+        sys.exit(1)
+    except NotADirectoryError:
+        docuploader.log.error(
+            f"The documentation path given ({documentation_path}) is a file not a directory."
+        )
+        sys.exit(1)
 
     docuploader.log.success("Let's upload some docs!")
 
