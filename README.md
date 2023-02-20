@@ -2,7 +2,6 @@
 
 This tool uploads documentation for publishing to googleapis.dev
 and cloud.google.com (see
-[`doc-templates`](https://github.com/googleapis/doc-templates) and
 [`doc-pipeline`](https://github.com/googleapis/doc-pipeline) for more info).
 
 ## Installation
@@ -53,7 +52,7 @@ For an example of using `docuploader`, see
 The tarballs containig DocFX YAML files must adhere to the following requirements:
 
 1. Contains `docs.metadata` or `docs.metadata.json` at the root directory of the
-   tarball.
+   tarball. Either format is accepted, see #usage for creating `docs.metadata`.
 1. `docs.metadata` or `docs.metadata.json` must have
     * `name`
     * `version`
