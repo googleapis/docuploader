@@ -49,7 +49,7 @@ For an example of using `docuploader`, see
 
 ## Requirements for DocFX YAML tarballs
 
-The tarballs containig DocFX YAML files must adhere to the following requirements:
+The tarballs containing DocFX YAML files must adhere to the following requirements:
 
 1. The tarball must contain metadata in the form of the `Metadata` message from
    [`metadata.proto`](./docuploader/protos/metadata.proto). This can be
