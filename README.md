@@ -51,9 +51,12 @@ For an example of using `docuploader`, see
 
 The tarballs containig DocFX YAML files must adhere to the following requirements:
 
-1. Contains `docs.metadata` or `docs.metadata.json` at the root directory of the
-   tarball. Either format is accepted, see [`Usage`](#usage) for creating
-   `docs.metadata`.
+1. The tarball must contain metadata in the form of the `Metadata` message from
+   [`metadata.proto`](./docuploader/protos/metadata.proto). This can be
+   represented in protobuf text format in a file called `docs.metadata`, or in
+   protobuf JSON format in a file called `docs.metadata.json`.
+    * [`docs.metadata` example](https://github.com/googleapis/doc-pipeline/blob/29b25c0399aa295db9dfa59fa78214c9a810350d/testdata/python/docs.metadata)
+    * [`docs.metadata.json` example](https://github.com/googleapis/doc-pipeline/blob/29b25c0399aa295db9dfa59fa78214c9a810350d/testdata/dotnet/docs.metadata.json)
 1. `docs.metadata` or `docs.metadata.json` must have
     * `name`
     * `version`
