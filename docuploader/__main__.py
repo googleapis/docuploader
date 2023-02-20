@@ -55,7 +55,11 @@ def main():
     default=None,
     help="Path to the credentials file to use for Google Cloud Storage.",
 )
-@click.option("--metadata-file", default=None, help="Path to the docs.metadata file.")
+@click.option(
+    "--metadata-file",
+    default=None,
+    help="Path to the docs.metadata file. The path must be relative to the CWD.",
+)
 @click.option(
     "--destination-prefix",
     default=None,
@@ -108,10 +112,12 @@ def upload(
     docuploader.log.success("Let's upload some docs!")
 
     docuploader.log.info("Loading up your metadata.")
-    try:
-        shutil.copy(metadata_path, pathlib.Path(documentation_path) / metadata_file)
-    except shutil.SameFileError:
-        pass
+
+    if documentation_path not in metadata_file:
+        shutil.copy(
+            metadata_path,
+            pathlib.Path(documentation_path) / metadata_file,
+        )
 
     metadata = metadata_pb2.Metadata()
     if metadata_file.endswith(".json"):
