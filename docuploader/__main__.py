@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import datetime
+import os
 import pathlib
 import shutil
 import sys
@@ -54,7 +55,11 @@ def main():
     default=None,
     help="Path to the credentials file to use for Google Cloud Storage.",
 )
-@click.option("--metadata-file", default=None, help="Path to the docs.metadata file.")
+@click.option(
+    "--metadata-file",
+    default=None,
+    help="Path to the docs.metadata file. The path must be relative to the CWD.",
+)
 @click.option(
     "--destination-prefix",
     default=None,
@@ -73,7 +78,7 @@ def upload(
         docuploader.log.error(
             "You need credentials to run this! Use Application Default Credentials or specify --credentials on the command line."
         )
-        return sys.exit(1)
+        sys.exit(1)
 
     if metadata_file is None:
         metadata_file = "docs.metadata"
@@ -86,15 +91,33 @@ def upload(
         docuploader.log.error(
             "You need metadata to upload the docs. You can generate it with docuploader create-metadata"
         )
-        return sys.exit(1)
+        sys.exit(1)
+    try:
+        if not os.listdir(documentation_path):
+            docuploader.log.error(
+                f"The documentation path given ({documentation_path}) does not contain any documentation files."
+            )
+            sys.exit(1)
+    except FileNotFoundError:
+        docuploader.log.error(
+            f"The documentation path given ({documentation_path}) does not exist relative to CWD."
+        )
+        sys.exit(1)
+    except NotADirectoryError:
+        docuploader.log.error(
+            f"The documentation path given ({documentation_path}) is a file not a directory."
+        )
+        sys.exit(1)
 
     docuploader.log.success("Let's upload some docs!")
 
     docuploader.log.info("Loading up your metadata.")
-    try:
-        shutil.copy(metadata_path, pathlib.Path(documentation_path) / metadata_file)
-    except shutil.SameFileError:
-        pass
+
+    if documentation_path not in metadata_file:
+        shutil.copy(
+            metadata_path,
+            pathlib.Path(documentation_path) / metadata_file,
+        )
 
     metadata = metadata_pb2.Metadata()
     if metadata_file.endswith(".json"):

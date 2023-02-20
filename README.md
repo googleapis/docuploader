@@ -29,7 +29,9 @@ There are two steps for uploading docs:
    --credentials TEXT         Path to the credentials file to use for Google
                               Cloud Storage.
 
-   --metadata-file TEXT       Path to the docs.metadata file.
+   --metadata-file TEXT       Path to the docs.metadata file. The path must be
+                              relative to the CWD.
+
    --destination-prefix TEXT  Prefix to include when uploading tar file. A -
                               will be added after the prefix, if there is one.
 
