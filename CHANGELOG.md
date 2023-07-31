@@ -11,6 +11,14 @@
 
 - Expose new metadata fields to docuploader create-metadata ([#8](https://github.com/googleapis/docuploader/pull/8))
 
+## [0.6.5](https://github.com/googleapis/docuploader/compare/v0.6.4...v0.6.5) (2023-02-27)
+
+
+### Bug Fixes
+
+* Add clarification on where docs.metadata should be ([#151](https://github.com/googleapis/docuploader/issues/151)) ([6435746](https://github.com/googleapis/docuploader/commit/6435746eed252f39a6af01b09238c33288dcf615))
+* Prevent empty tarballs from being passed on ([#152](https://github.com/googleapis/docuploader/issues/152)) ([e50d78b](https://github.com/googleapis/docuploader/commit/e50d78bd07462b074d222277bcead5f6b9f2b66c))
+
 ## [0.6.4](https://github.com/googleapis/docuploader/compare/v0.6.3...v0.6.4) (2022-10-07)
 
 
