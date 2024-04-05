@@ -11,6 +11,13 @@
 
 - Expose new metadata fields to docuploader create-metadata ([#8](https://github.com/googleapis/docuploader/pull/8))
 
+## [0.6.6](https://github.com/googleapis/docuploader/compare/v0.6.5...v0.6.6) (2024-04-05)
+
+
+### Documentation
+
+* Add summary_overview template ([#192](https://github.com/googleapis/docuploader/issues/192)) ([3f35d13](https://github.com/googleapis/docuploader/commit/3f35d135e8a8acb3ced910fd55c83e9967f7c70b))
+
 ## [0.6.5](https://github.com/googleapis/docuploader/compare/v0.6.4...v0.6.5) (2023-02-27)
 
 
