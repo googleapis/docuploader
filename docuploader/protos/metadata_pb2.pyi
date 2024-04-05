@@ -15,22 +15,18 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+
 import builtins
 import collections.abc
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
 import google.protobuf.timestamp_pb2
-import sys
-
-if sys.version_info >= (3, 8):
-    import typing as typing_extensions
-else:
-    import typing_extensions
+import typing
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@typing_extensions.final
+@typing.final
 class Metadata(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -46,9 +42,6 @@ class Metadata(google.protobuf.message.Message):
     SERVING_PATH_FIELD_NUMBER: builtins.int
     XREFS_FIELD_NUMBER: builtins.int
     XREF_SERVICES_FIELD_NUMBER: builtins.int
-    @property
-    def update_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
-        """When the documentation was built."""
     name: builtins.str
     """The product/API name. This *should* match the DNS name of the API
     service. For example, Python's Cloud Storage client would list "storage"
@@ -89,11 +82,17 @@ class Metadata(google.protobuf.message.Message):
     `{stem}/{version}`.
     """
     @property
+    def update_time(self) -> google.protobuf.timestamp_pb2.Timestamp:
+        """When the documentation was built."""
+
+    @property
     def xrefs(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         """The DocFX xref URLs required for these docs."""
+
     @property
     def xref_services(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         """The DocFX xref service URLs required for these docs."""
+
     def __init__(
         self,
         *,
@@ -110,7 +109,7 @@ class Metadata(google.protobuf.message.Message):
         xrefs: collections.abc.Iterable[builtins.str] | None = ...,
         xref_services: collections.abc.Iterable[builtins.str] | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing_extensions.Literal["update_time", b"update_time"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing_extensions.Literal["distribution_name", b"distribution_name", "github_repository", b"github_repository", "issue_tracker", b"issue_tracker", "language", b"language", "name", b"name", "product_page", b"product_page", "serving_path", b"serving_path", "stem", b"stem", "update_time", b"update_time", "version", b"version", "xref_services", b"xref_services", "xrefs", b"xrefs"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["update_time", b"update_time"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["distribution_name", b"distribution_name", "github_repository", b"github_repository", "issue_tracker", b"issue_tracker", "language", b"language", "name", b"name", "product_page", b"product_page", "serving_path", b"serving_path", "stem", b"stem", "update_time", b"update_time", "version", b"version", "xref_services", b"xref_services", "xrefs", b"xrefs"]) -> None: ...
 
 global___Metadata = Metadata
