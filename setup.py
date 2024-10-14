@@ -23,7 +23,6 @@ dependencies = [
     "colorlog",
     "google-cloud-storage<3.0.0dev",
     "protobuf>=3.12.0",
-    "six"
 ]
 
 packages = setuptools.find_packages()
