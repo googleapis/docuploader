@@ -73,7 +73,7 @@ def upload(
     destination_prefix: str,
     documentation_path: str,
 ):
-    credentials, project_id = docuploader.credentials.find(credentials)
+    docuploader_credentials, project_id = docuploader.credentials.find(credentials)
     if not credentials:
         docuploader.log.error(
             "You need credentials to run this! Use Application Default Credentials or specify --credentials on the command line."
@@ -163,7 +163,7 @@ def upload(
             source=tar_filename,
             destination=destination_name,
             bucket=staging_bucket,
-            credentials=credentials,
+            credentials=docuploader_credentials,
             project_id=project_id,
         )
 
