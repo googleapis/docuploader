@@ -65,6 +65,11 @@ def main():
     default=None,
     help="Prefix to include when uploading tar file. A - will be added after the prefix, if there is one.",
 )
+@click.option(
+    "--project-id",
+    default=None,
+    help="Override the project ID for the GCS bucket.",
+)
 @click.argument("documentation_path")
 def upload(
     staging_bucket: str,
@@ -72,13 +77,18 @@ def upload(
     metadata_file: Optional[str],
     destination_prefix: str,
     documentation_path: str,
+    project_id: Optional[str],
 ):
-    credentials, project_id = docuploader.credentials.find(credentials)
+    credentials, adc_project_id = docuploader.credentials.find(credentials)
     if not credentials:
         docuploader.log.error(
             "You need credentials to run this! Use Application Default Credentials or specify --credentials on the command line."
         )
         sys.exit(1)
+    
+    # default to credentials' project ID
+    if not project_id:
+        project_id = adc_project_id
 
     if metadata_file is None:
         metadata_file = "docs.metadata"
