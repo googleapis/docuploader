@@ -40,7 +40,7 @@ def test(session):
 
 @nox.session(python=DEFAULT_PYTHON_VERSION)
 def generate_protos(session):
-    session.install("grpcio-tools", "mypy-protobuf")
+    session.install("grpcio-tools==1.59.0", "mypy-protobuf")
     session.run(
         "python", "-m", "grpc_tools.protoc",
         "-Idocuploader/protos",

@@ -22,7 +22,7 @@ dependencies = [
     "click",
     "colorlog",
     "google-cloud-storage<3.0.0dev",
-    "protobuf>=3.12.0",
+    "protobuf>=3.20.2,<6.0.0dev,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5",
     "six"
 ]
 
