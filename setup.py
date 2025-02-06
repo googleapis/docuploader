@@ -22,7 +22,7 @@ dependencies = [
     "click",
     "colorlog",
     "google-cloud-storage<3.0.0dev",
-    "protobuf>=3.12.0",
+    "protobuf>=3.20.2,<6.0.0dev,!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5",
 ]
 
 packages = setuptools.find_packages()
@@ -43,12 +43,13 @@ setuptools.setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.8',
         'Operating System :: OS Independent',
         'Topic :: Internet',
     ],
     platforms='Posix; MacOS X; Windows',
     packages=packages,
+    python_requires='>=3.8',
     install_requires=dependencies,
     include_package_data=True,
     zip_safe=False,

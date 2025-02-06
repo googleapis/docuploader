@@ -24,7 +24,7 @@ def blacken(session):
 
 @nox.session(python=DEFAULT_PYTHON_VERSION)
 def lint(session):
-    session.install('mypy', 'flake8', 'black', 'types-pkg_resources')
+    session.install('mypy', 'flake8', 'black')
     session.run('pip', 'install', '-e', '.')
     session.run('black', '--check', 'docuploader', 'tests', '--extend-exclude', 'docuploader/protos')
     session.run('flake8', 'docuploader', 'tests')
@@ -40,7 +40,7 @@ def test(session):
 
 @nox.session(python=DEFAULT_PYTHON_VERSION)
 def generate_protos(session):
-    session.install("grpcio-tools", "mypy-protobuf")
+    session.install("grpcio-tools==1.59.0", "mypy-protobuf")
     session.run(
         "python", "-m", "grpc_tools.protoc",
         "-Idocuploader/protos",
