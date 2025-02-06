@@ -24,7 +24,7 @@ def blacken(session):
 
 @nox.session(python=DEFAULT_PYTHON_VERSION)
 def lint(session):
-    session.install('mypy', 'flake8', 'black', 'types-pkg_resources')
+    session.install('mypy', 'flake8', 'black')
     session.run('pip', 'install', '-e', '.')
     session.run('black', '--check', 'docuploader', 'tests', '--extend-exclude', 'docuploader/protos')
     session.run('flake8', 'docuploader', 'tests')

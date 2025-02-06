@@ -19,10 +19,10 @@ import shutil
 import sys
 import tempfile
 from typing import List, Optional
+from importlib.metadata import version, PackageNotFoundError  
 
 import click
 from google.protobuf import text_format, json_format  # type: ignore
-import pkg_resources
 
 from docuploader.protos import metadata_pb2
 import docuploader.credentials
@@ -31,8 +31,8 @@ import docuploader.tar
 import docuploader.upload
 
 try:
-    VERSION = pkg_resources.get_distribution("gcp-docuploader").version
-except pkg_resources.DistributionNotFound:
+    VERSION = version("gcp-docuploader")
+except PackageNotFoundError:
     VERSION = "0.0.0+dev"
 
 DEFAULT_STAGING_BUCKET = "docs-resources"
