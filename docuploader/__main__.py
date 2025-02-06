@@ -79,7 +79,7 @@ def upload(
     documentation_path: str,
     project_id: Optional[str],
 ):
-    gcp_credentials, project_id = docuploader.credentials.find(credentials)
+    gcp_credentials, adc_project_id = docuploader.credentials.find(credentials)
     if not gcp_credentials:
         docuploader.log.error(
             "You need credentials to run this! Use Application Default Credentials or specify --credentials on the command line."
@@ -87,8 +87,7 @@ def upload(
         sys.exit(1)
 
     # default to credentials' project ID
-    if not project_id:
-        project_id = adc_project_id
+    gcs_project_id = project_id if project_id else adc_project_id
 
     if metadata_file is None:
         metadata_file = "docs.metadata"
@@ -174,7 +173,7 @@ def upload(
             destination=destination_name,
             bucket=staging_bucket,
             credentials=gcp_credentials,
-            project_id=project_id,
+            project_id=gcs_project_id,
         )
 
     docuploader.log.success(
