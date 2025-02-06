@@ -85,7 +85,7 @@ def upload(
             "You need credentials to run this! Use Application Default Credentials or specify --credentials on the command line."
         )
         sys.exit(1)
-    
+
     # default to credentials' project ID
     if not project_id:
         project_id = adc_project_id
