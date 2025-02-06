@@ -19,7 +19,7 @@ import shutil
 import sys
 import tempfile
 from typing import List, Optional
-from importlib.metadata import version, PackageNotFoundError  
+from importlib.metadata import version, PackageNotFoundError
 
 import click
 from google.protobuf import text_format, json_format  # type: ignore
