@@ -74,7 +74,7 @@ def upload(
     documentation_path: str,
 ):
     docuploader_credentials, project_id = docuploader.credentials.find(credentials)
-    if not credentials:
+    if not docuploader_credentials:
         docuploader.log.error(
             "You need credentials to run this! Use Application Default Credentials or specify --credentials on the command line."
         )
