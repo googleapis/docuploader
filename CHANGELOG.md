@@ -11,6 +11,19 @@
 
 - Expose new metadata fields to docuploader create-metadata ([#8](https://github.com/googleapis/docuploader/pull/8))
 
+## [0.7.0](https://github.com/googleapis/docuploader/compare/v0.6.5...v0.7.0) (2025-02-06)
+
+
+### Features
+
+* Add ability to override the GCS project ID ([#225](https://github.com/googleapis/docuploader/issues/225)) ([fe8283e](https://github.com/googleapis/docuploader/commit/fe8283e1ea4f5494a386a891aa28a3060e835981))
+* Explicitly require python 3.8+ ([#226](https://github.com/googleapis/docuploader/issues/226)) ([4f3691c](https://github.com/googleapis/docuploader/commit/4f3691cd7ea1b98bc22fcc018daafb2074c19a68))
+
+
+### Documentation
+
+* Add summary_overview template ([#192](https://github.com/googleapis/docuploader/issues/192)) ([3f35d13](https://github.com/googleapis/docuploader/commit/3f35d135e8a8acb3ced910fd55c83e9967f7c70b))
+
 ## [0.6.5](https://github.com/googleapis/docuploader/compare/v0.6.4...v0.6.5) (2023-02-27)
 
 
