@@ -49,7 +49,7 @@ def test_tar(tmpdir):
     tar_destination = tmpdir / "test.tar.gz"
     tar.compress(root, tar_destination)
 
-    assert tarfile.is_tarfile(tar_destination)
+    assert tarfile.is_tarfile(str(tar_destination))
 
     decompress_destination = tmpdir / "tar_out_dir"
     pathlib.Path(decompress_destination).mkdir(parents=True, exist_ok=True)
