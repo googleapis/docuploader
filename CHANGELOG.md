@@ -11,6 +11,13 @@
 
 - Expose new metadata fields to docuploader create-metadata ([#8](https://github.com/googleapis/docuploader/pull/8))
 
+## [0.8.0](https://github.com/googleapis/docuploader/compare/v0.7.2...v0.8.0) (2026-07-29)
+
+
+### Features
+
+* Support Protobuf 7.x ([#246](https://github.com/googleapis/docuploader/issues/246)) ([09756bf](https://github.com/googleapis/docuploader/commit/09756bf35ae6f55d94a9fcd06faabda18e3934b1))
+
 ## [0.7.2](https://github.com/googleapis/docuploader/compare/v0.7.1...v0.7.2) (2025-03-13)
 
 
